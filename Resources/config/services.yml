@@ -1,0 +1,6 @@
+services:
+    nathiss.twig.quote_generator_extension:
+        class: Nathiss\Bundle\QuoteGeneratorBundle\Twig\Extension\NathissQuoteGeneratorExtension
+        tags:
+            - { name: twig.extension }
+        arguments: ['@service_container']

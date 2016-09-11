@@ -1,0 +1,8 @@
+{% block nathiss_quote %}
+    <blockquote class="nathiss-quote">
+        <p>{{ quote.content }}</p>
+        {% if quote.author %}
+            <span class="nathiss-quote-author">{{ quote.author }}</span>
+        {% endif %}
+    </blockquote>
+{% endblock %}
