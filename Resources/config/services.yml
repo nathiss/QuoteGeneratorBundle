@@ -1,6 +1,9 @@
+parameters:
+    nathiss_quote_generator.template: 'NathissQuoteGeneratorBundle:Default:quote.html.twig'
+
 services:
     nathiss_quote_generator.twig.extension:
-        class: %nathiss_quote_generator.twig.extension.class%
+        class: Nathiss\Bundle\QuoteGeneratorBundle\Twig\Extension\NathissQuoteGeneratorExtension
         tags:
             - { name: twig.extension }
         arguments: ['@doctrine.orm.entity_manager']

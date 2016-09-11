@@ -20,9 +20,14 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('nathiss_quote_generator');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->scalarValue('template')
+                    ->isRequired()
+                    ->info('Template for generated quote.')
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }
