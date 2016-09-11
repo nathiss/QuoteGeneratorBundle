@@ -6,6 +6,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Twig_SimpleFunction;
 use Twig_Extension;
 
+/**
+ * Twig extension for generating quotes.
+ */
 class NathissQuoteGeneratorExtension extends Twig_Extension
 {
     /**
@@ -14,6 +17,9 @@ class NathissQuoteGeneratorExtension extends Twig_Extension
     protected $container;
 
 
+    /**
+     * Sets container.
+     */
     public function __construct(ContainerInterface $container = null)
     {
         $this->container = $container;
