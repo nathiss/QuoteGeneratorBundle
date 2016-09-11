@@ -2,7 +2,7 @@
 
 namespace Nathiss\Bundle\QuoteGeneratorBundle\Twig\Extension;
 
-use Doctrine\ORM\EntityManager;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use InvalidArgumentException;
 use Twig_SimpleFunction;
 use Twig_Enviroment;
@@ -14,17 +14,17 @@ use Twig_Extension;
 class NathissQuoteGeneratorExtension extends Twig_Extension
 {
     /**
-     * @var \Doctrine\ORM\EntityManager
+     * @var \Symfony\Component\DependencyInjection\ContainerInterface
      */
-    protected $em;
+    protected $container;
 
 
     /**
      * Sets Entity Manager.
      */
-    public function __construct(EntityManager $em = null)
+    public function __construct(ContainerInterface $container = null)
     {
-        $this->em = $em;
+        $this->container = $container;
     }
 
     /**
@@ -44,13 +44,13 @@ class NathissQuoteGeneratorExtension extends Twig_Extension
         array $options = array(),
         array $providers = array()
     ) {
-#         if(!isset($options['template']))
-#             throw new InvalidArgumentException('Template parameter (for NathissQuoteGeneratorBundle) can not be null.');
+        if(!isset($options['template']))
+            throw new InvalidArgumentException('Template parameter (for NathissQuoteGeneratorBundle) can not be null.');
 
-        $quote = $this->em->getRepository('NathissQuoteGeneratorBundle:Quote')->findOneRandomly();
+        $quote = $this->container->get('doctrine.orm.entity_manager')->getRepository('NathissQuoteGeneratorBundle:Quote')->findOneRandomly();
         if(!$quote)
             return null;
-        return $twigEnvironment->render('NathissQuoteGeneratorBundle:Default:quote.html.twig', array('quote' => $quote));
+        return $twigEnvironment->render($options['tempalate'], array('quote' => $quote));
     }
 
     /**

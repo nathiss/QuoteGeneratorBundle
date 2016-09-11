@@ -6,4 +6,4 @@ services:
         class: Nathiss\Bundle\QuoteGeneratorBundle\Twig\Extension\NathissQuoteGeneratorExtension
         tags:
             - { name: twig.extension }
-        arguments: ['@doctrine.orm.entity_manager']
+        arguments: ['@service_container']
