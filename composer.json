@@ -1,0 +1,24 @@
+{
+    "name": "nathiss/quote-generator-bundle",
+    "type": "symfony-bundle",
+
+    "description": "A simple Symfony 2|3 bundle for generating quotes.",
+    "keywords": ["symfony", "bundle", "quote", "generator"],
+    "homepage": "https://github.com/nathiss/QuoteGeneratorBundle",
+
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kamil Rusin",
+            "email": "kamil.jakub.rusin@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nathiss\\Bundle\\QuoteGeneratorBundle\\": ""
+        }
+    }
+}
