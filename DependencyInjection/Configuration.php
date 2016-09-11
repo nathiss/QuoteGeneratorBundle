@@ -20,14 +20,14 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('nathiss_quote_generator');
 
-        $rootNode
-            ->children()
-                ->scalarNode('template')
-                    ->isRequired()
-                    ->info('Template for generated quote.')
-                ->end()
-            ->end()
-        ;
+#         $rootNode
+#             ->children()
+#                 ->scalarNode('template')
+#                     ->isRequired()
+#                     ->info('Template for generated quote.')
+#                 ->end()
+#             ->end()
+#         ;
 
         return $treeBuilder;
     }
