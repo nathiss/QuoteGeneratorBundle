@@ -1,0 +1,3 @@
+parameters:
+    nathiss_quote_generator.twig.extension.class: Nathiss\Bundle\QuoteGeneratorBundle\Twig\Extension\NathissQuoteGeneratorExtension
+    nathiss_quote_generator.twig.extension.template: 'NathissQuoteGeneratorBundle:Default:quote.html.twig'

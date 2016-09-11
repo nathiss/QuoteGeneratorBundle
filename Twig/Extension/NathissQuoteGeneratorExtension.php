@@ -2,8 +2,9 @@
 
 namespace Nathiss\Bundle\QuoteGeneratorBundle\Twig\Extension;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\ORM\EntityManager;
 use Twig_SimpleFunction;
+use Twig_Enviroment;
 use Twig_Extension;
 
 /**
@@ -12,17 +13,17 @@ use Twig_Extension;
 class NathissQuoteGeneratorExtension extends Twig_Extension
 {
     /**
-     * @var \Symfony\Component\DependencyInjection\ContainerInterface
+     * @var \Doctrine\ORM\EntityManager
      */
-    protected $container;
+    protected $em;
 
 
     /**
-     * Sets container.
+     * Sets Entity Manager.
      */
-    public function __construct(ContainerInterface $container = null)
+    public function __construct(EntityManager $em = null)
     {
-        $this->container = $container;
+        $this->em = $em;
     }
 
     /**
@@ -31,12 +32,15 @@ class NathissQuoteGeneratorExtension extends Twig_Extension
      *
      * @return string
      */
-    public function generateQuote()
-    {
-        $quote = $this->container->get('doctrine.orm.entity_manager')->getRepository('NathissQuoteGeneratorBundle:Quote')->findOneRandomly();
+    public function generateQuote(
+        Twig_Enviroment $twigEnviroment,
+        array $options = array(),
+        array $providers = array()
+    ) {
+        $quote = $this->em->getRepository('NathissQuoteGeneratorBundle:Quote')->findOneRandomly();
         if(!$quote)
             return null;
-        return $this->container->get('templating')->render('NathissQuoteGeneratorBundle:Default:quote.html.twig', array('quote' => $quote));
+        return $twigEnviroment->render('NathissQuoteGeneratorBundle:Default:quote.html.twig', array('quote' => $quote));
     }
 
     /**
@@ -45,7 +49,14 @@ class NathissQuoteGeneratorExtension extends Twig_Extension
     public function getFunctions()
     {
         return array(
-            new Twig_SimpleFunction('generate_quote', array($this, 'generateQuote'), array('is_safe' => array('html'),))
+            new Twig_SimpleFunction(
+                'generate_quote',
+                array($this, 'generateQuote'),
+                array(
+                    'is_safe' => array('html'),
+                    'needs_enviroment' => true,
+                )
+            ),
         );
     }
 
