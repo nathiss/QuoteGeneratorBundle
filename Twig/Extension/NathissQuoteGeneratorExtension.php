@@ -31,26 +31,17 @@ class NathissQuoteGeneratorExtension extends Twig_Extension
      * Generates quote
      * Selects randomly quote form DB and renders twig template
      *
-     * @param \Twig_Environment $twigEnvironment
-     * @param array $options
-     * @param string[] $providers
-     *
-     * @throws \InvalidArgumentExeption If template was not found
-     *
      * @return string
      */
-    public function generateQuote(
-        Twig_Environment $twigEnvironment,
-        array $options = array(),
-        array $providers = array()
-    ) {
-        if(!isset($options['template']))
-            throw new InvalidArgumentException('Template parameter (for NathissQuoteGeneratorBundle) can not be null.');
-
+    public function generateQuote()
+    {
         $quote = $this->container->get('doctrine.orm.entity_manager')->getRepository('NathissQuoteGeneratorBundle:Quote')->findOneRandomly();
         if(!$quote)
             return null;
-        return $twigEnvironment->render($options['tempalate'], array('quote' => $quote));
+
+        $template = $this->container->getParameter('nathiss_quote_generator.template');
+
+        return $this->container->get('templating')->render($tempalate, array('quote' => $quote));
     }
 
     /**
@@ -64,7 +55,6 @@ class NathissQuoteGeneratorExtension extends Twig_Extension
                 array($this, 'generateQuote'),
                 array(
                     'is_safe' => array('html'),
-                    'needs_environment' => true,
                 )
             ),
         );
