@@ -3,7 +3,7 @@
 namespace Nathiss\Bundle\QuoteGeneratorBundle\Twig\Extension;
 
 use Doctrine\ORM\EntityManager;
-use InvalidArgumentExeption;
+use InvalidArgumentException;
 use Twig_SimpleFunction;
 use Twig_Enviroment;
 use Twig_Extension;
@@ -31,22 +31,26 @@ class NathissQuoteGeneratorExtension extends Twig_Extension
      * Generates quote
      * Selects randomly quote form DB and renders twig template
      *
+     * @param \Twig_Environment $twigEnvironment
+     * @param array $options
+     * @param string[] $providers
+     *
      * @throws \InvalidArgumentExeption If template was not found
      *
      * @return string
      */
     public function generateQuote(
-        Twig_Enviroment $twigEnviroment,
+        Twig_Environment $twigEnvironment,
         array $options = array(),
         array $providers = array()
     ) {
-        if(!isset($options['template']))
-            throw new InvalidArgumentExeption('Template parameter (for NathissQuoteGeneratorBundle) can not be null.');
+#         if(!isset($options['template']))
+#             throw new InvalidArgumentException('Template parameter (for NathissQuoteGeneratorBundle) can not be null.');
 
         $quote = $this->em->getRepository('NathissQuoteGeneratorBundle:Quote')->findOneRandomly();
         if(!$quote)
             return null;
-        return $twigEnviroment->render($options['template'], array('quote' => $quote));
+        return $twigEnvironment->render('NathissQuoteGeneratorBundle:Default:quote.html.twig', array('quote' => $quote));
     }
 
     /**
@@ -60,7 +64,7 @@ class NathissQuoteGeneratorExtension extends Twig_Extension
                 array($this, 'generateQuote'),
                 array(
                     'is_safe' => array('html'),
-                    'needs_enviroment' => true,
+                    'needs_environment' => true,
                 )
             ),
         );
