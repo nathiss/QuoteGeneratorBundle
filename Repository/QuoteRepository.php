@@ -8,7 +8,7 @@ namespace Nathiss\Bundle\QuoteGeneratorBundle\Repository;
 class QuoteRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
-     * Selects Query from DB randomly
+     * Selects Quote from DB randomly
      *
      * @return \Nathiss\Bundle\QuoteGenerateBundle\Entity\Quote
      */
