@@ -24,7 +24,6 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('template')
                     ->defaultValue('NathissQuoteGeneratorBundle:Default:quote.html.twig')
-                    ->isRequired()
                     ->info('Template for generated quote.')
                 ->end()
             ->end()
