@@ -22,7 +22,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarValue('template')
+                ->scalarNode('template')
                     ->isRequired()
                     ->info('Template for generated quote.')
                 ->end()
