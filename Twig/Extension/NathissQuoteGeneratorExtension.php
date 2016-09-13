@@ -20,7 +20,7 @@ class NathissQuoteGeneratorExtension extends Twig_Extension
 
 
     /**
-     * Sets Entity Manager.
+     * Sets Container
      */
     public function __construct(ContainerInterface $container = null)
     {
