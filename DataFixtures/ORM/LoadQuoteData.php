@@ -4,9 +4,9 @@ namespace Nathiss\Bundle\QuoteGenerateBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Nathiss\Bundle\QuoteGenerateBundle\Entity\Quote;
+use Nathiss\Bundle\QuoteGeneratorBundle\Entity\Quote;
 
-class LoadQuoteData implements FixturesInterface
+class LoadQuoteData implements FixtureInterface
 {
     /**
      * {@inheritDoc}
@@ -18,8 +18,8 @@ class LoadQuoteData implements FixturesInterface
         foreach($fixtures as $fixture)
         {
             $quote = new Quote();
-            $quote->setContent($fixture['content']);
-            $quote->setAuthor($fixture['author']);
+            $quote->setContent($fixture->content);
+            $quote->setAuthor($fixture->author);
 
             $manager->persist($quote);
             $manager->flush();
@@ -33,8 +33,8 @@ class LoadQuoteData implements FixturesInterface
      */
     public function loadQuoteFixtures()
     {
-        $path = '../../Data/quotes.json';
-        $file = fopen($path, 'r') or throw new Exception('File quotes.json in Nathiss\\QuotesGeneratorBundle\\Data does not exist.');
+        $path = __DIR__.'/../../Data/quotes.json';
+        $file = fopen($path, 'r');
         $content = fread($file, filesize($path));
         fclose($file);
 
