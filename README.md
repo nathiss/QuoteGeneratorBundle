@@ -2,14 +2,14 @@
 
 ## Installation
 
-### Step 1.
+### Step 1. Install
 
 Open a command console, enter your project directory and execute the following command to download the latest stable version:
 ```bash
 $ composer require nathiss/quote-generator-bundle
 ```
 
-### Step 2.
+### Step 2. Enable bundle
 
 Enable the bundle by adding it to the list of registred bundles in the `app/AppKernel.php` file:
 ```php
@@ -31,6 +31,14 @@ class AppKernel extends Kernel
     // ...
 }
 ```
+
+### Step 3. Configuration (optional)
+You can override the default template by adding these lines to your `app/config/config.yml` file:
+```yaml
+nathiss_quote_generate:
+    template: 'path/to/your/template.html.twig'
+```
+Default: `NathissQuoteGeneratorBundle:Default:quote.html.twig`
 
 ## Usage
 
