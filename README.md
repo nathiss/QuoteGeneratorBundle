@@ -32,13 +32,26 @@ class AppKernel extends Kernel
 }
 ```
 
-### Step 3. Configuration (optional)
+### Step 3. Update database schema
+To update schema enter this command:
+```bash
+$ ./bin/console doctrine:schema:update --force
+```
+
+### Step 4. Configuration (optional)
 You can override the default template by adding these lines to your `app/config/config.yml` file:
 ```yaml
 nathiss_quote_generate:
     template: 'path/to/your/template.html.twig'
 ```
 Default: `NathissQuoteGeneratorBundle:Default:quote.html.twig`
+
+### Step 5. Load fixtures (optional)
+To load fixtures enter this command:
+```bash
+$ ./bin/console doctrine:fixtures:load
+```
+(TIP: add `--append` options if you wish not to delete data in your database)
 
 ## Usage
 
