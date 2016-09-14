@@ -16,6 +16,9 @@
     "require": {
         "php": ">=5.3.0"
     },
+    "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^2.3"
+    },
     "autoload": {
         "psr-4": {
             "Nathiss\\Bundle\\QuoteGeneratorBundle\\": ""
