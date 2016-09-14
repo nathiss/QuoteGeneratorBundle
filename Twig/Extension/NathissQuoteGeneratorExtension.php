@@ -41,7 +41,7 @@ class NathissQuoteGeneratorExtension extends Twig_Extension
 
         $template = $this->container->getParameter('nathiss_quote_generator.template');
 
-        return $this->container->get('templating')->render($tempalate, array('quote' => $quote));
+        return $this->container->get('templating')->render($template, array('quote' => $quote));
     }
 
     /**
