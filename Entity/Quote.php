@@ -22,8 +22,6 @@ class Quote
     private $id;
 
     /**
-     * Author of the quote, not needed.
-     *
      * @var string
      *
      * @ORM\Column(name="author", type="string", length=255, nullable=true)
@@ -31,8 +29,6 @@ class Quote
     private $author;
 
     /**
-     * Content of the quote, needed.
-     *
      * @var string
      *
      * @ORM\Column(name="content", type="text")
@@ -40,8 +36,6 @@ class Quote
     private $content;
 
     /**
-     * Publication date of the quote, it'll be added automaticly.
-     *
      * @var \DateTime
      *
      * @ORM\Column(name="pubDate", type="datetime")

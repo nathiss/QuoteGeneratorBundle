@@ -22,7 +22,7 @@ class NathissQuoteGeneratorExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        
+
         $container->setParameter('nathiss_quote_generator.template', $config['template']);
 
 
@@ -38,3 +38,4 @@ class NathissQuoteGeneratorExtension extends Extension
         return 'nathiss_quote_generator';
     }
 }
+
