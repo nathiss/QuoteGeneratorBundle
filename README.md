@@ -73,4 +73,4 @@ will render as:
 ```
 
 ## License
-See the [license](https://github.com/nathiss/quote-generator-bundle/blob/master/LICENSE) file.
+See the [license](https://github.com/nathiss/QuoteGeneratorBundle/blob/master/LICENSE) file.
