@@ -38,6 +38,6 @@ class LoadQuoteData implements FixtureInterface
         $content = fread($file, filesize($path));
         fclose($file);
 
-        return json_decode($content);       
+        return json_decode($content);
     }
 }

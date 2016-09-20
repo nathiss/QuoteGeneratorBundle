@@ -38,4 +38,3 @@ class NathissQuoteGeneratorExtension extends Extension
         return 'nathiss_quote_generator';
     }
 }
-
