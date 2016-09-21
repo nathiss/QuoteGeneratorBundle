@@ -1,5 +1,7 @@
 # QuoteGeneratorBundle
 
+A simple Symfony 2|3 bundle for generating quotes.
+
 ## Installation
 
 ### Step 1. Install
