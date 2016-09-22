@@ -43,9 +43,20 @@ class Quote
     private $pubDate;
 
 
+    /**
+     * Sets pubDate attribute.
+     */
     public function __construct()
     {
         $this->pubDate = new \DateTime();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->content;
     }
 
     /**
