@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * This is a part of NathissQuoteGeneratorBundle.
+ *
+ * NathissQuoteGeneratorBundle is Symfony 2|3 bundle for generating quotes, which are randomly selected from database.
+ * For the full copyright and license information, please view the LICENSE file that was distributed with the source code.
+ *
+ * @package nathiss/quote-generator-bundle
+ * @author Kamil Rusin <kamil.jakub.rusin@gmail.com>
+ */
+
 namespace Nathiss\Bundle\QuoteGeneratorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -13,6 +23,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Quote
 {
     /**
+     * Id of the quote.
+     *
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -22,6 +34,8 @@ class Quote
     private $id;
 
     /**
+     * Author of the quote, can be null.
+     *
      * @var string
      *
      * @ORM\Column(name="author", type="string", length=255, nullable=true)
@@ -29,6 +43,8 @@ class Quote
     private $author;
 
     /**
+     * Content of the quote, can not be null.
+     *
      * @var string
      *
      * @ORM\Column(name="content", type="text")
@@ -36,6 +52,8 @@ class Quote
     private $content;
 
     /**
+     * Publication date, it's set in __construct() method.
+     *
      * @var \DateTime
      *
      * @ORM\Column(name="pubDate", type="datetime")
@@ -52,6 +70,10 @@ class Quote
     }
 
     /**
+     * Renders objects as string.
+     *
+     * Returns content of the quote.
+     *
      * @return string
      */
     public function __toString()

@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * This is a part of NathissQuoteGeneratorBundle.
+ *
+ * NathissQuoteGeneratorBundle is Symfony 2|3 bundle for generating quotes, which are randomly selected from database.
+ * For the full copyright and license information, please view the LICENSE file that was distributed with the source code.
+ *
+ * @package nathiss/quote-generator-bundle
+ * @author Kamil Rusin <kamil.jakub.rusin@gmail.com>
+ */
+
 namespace Nathiss\Bundle\QuoteGeneratorBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -14,6 +24,8 @@ use Twig_Extension;
 class NathissQuoteGeneratorExtension extends Twig_Extension
 {
     /**
+     * Service container.
+     *
      * @var \Symfony\Component\DependencyInjection\ContainerInterface
      */
     protected $container;
@@ -21,6 +33,8 @@ class NathissQuoteGeneratorExtension extends Twig_Extension
 
     /**
      * Sets Container
+     *
+     * @param ContainerInterface $container
      */
     public function __construct(ContainerInterface $container = null)
     {
