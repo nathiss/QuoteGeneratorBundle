@@ -1,6 +1,6 @@
 <?php
 
-namespace Nathiss\Bundle\QuoteGenerateBundle\DataFixtures\ORM;
+namespace Nathiss\Bundle\QuoteGeneratorBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
