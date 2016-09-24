@@ -31,26 +31,27 @@ class LoadQuoteData implements FixtureInterface
     public function load(ObjectManager $manager)
     {
         $fixtures = $this->loadQuoteFixtures();
+        $quote = new Quote();
 
         foreach($fixtures as $fixture)
         {
-            $quote = new Quote();
             $quote->setContent($fixture->content);
             $quote->setAuthor($fixture->author);
 
             $manager->persist($quote);
-            $manager->flush();
         }
+
+        $manager->flush();
     }
 
     /**
-     * Loads fixtures from Data/quotes.json file and returns it as array
+     * Loads fixtures from Resources/data/quotes.json file and returns it as array.
      *
      * @return array
      */
     public function loadQuoteFixtures()
     {
-        $path = __DIR__.'/../../Data/quotes.json';
+        $path = __DIR__.'/../../Resources/data/quotes.json';
         $file = fopen($path, 'r');
         $content = fread($file, filesize($path));
         fclose($file);
