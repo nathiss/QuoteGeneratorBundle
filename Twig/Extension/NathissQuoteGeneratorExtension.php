@@ -48,11 +48,11 @@ class NathissQuoteGeneratorExtension extends Twig_Extension
      *
      * @throws \Nathiss\Bundle\QuoteGeneratorBundle\Exception\QuoteDoesNotExist
      *
-     * @return string|null
+     * @return string
      */
     public function generateQuote()
     {
-        $quote = $this->get('doctrine.orm.entity_manager')->getRepository('NathissQuoteGeneratorBundle:Quote')->findOneRandomly();
+        $quote = $this->getQuote();
         if(!$quote)
             throw new QuoteDoesNotExistException('No quote exists in datebase!');
 
@@ -60,6 +60,16 @@ class NathissQuoteGeneratorExtension extends Twig_Extension
             $this->getTemplate(),
             array('quote' => $quote)
         );
+    }
+
+    /**
+     * Returns quote from database
+     *
+     * @return \Nathiss\Bundle\QuoteGeneratorBundle\Entity\Quote
+     */
+    private function getQuote()
+    {
+        return $this->container->get('doctrine.orm.entity_manager')->getRepository('NathissQuoteGeneratorBundle:Quote')->findOneRandomly();
     }
 
     /**
