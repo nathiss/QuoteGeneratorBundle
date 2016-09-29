@@ -12,6 +12,7 @@
 
 namespace Nathiss\Bundle\QuoteGeneratorBundle\Twig\Extension;
 
+use Nathiss\Bundle\QuoteGeneratorBundle\Exception\QuoteDoesNotExistException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use InvalidArgumentException;
 use Twig_SimpleFunction;
@@ -34,7 +35,7 @@ class NathissQuoteGeneratorExtension extends Twig_Extension
     /**
      * Sets Container
      *
-     * @param ContainerInterface $container
+     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
      */
     public function __construct(ContainerInterface $container = null)
     {
@@ -43,19 +44,44 @@ class NathissQuoteGeneratorExtension extends Twig_Extension
 
     /**
      * Generates quote
-     * Selects randomly quote form DB and renders twig template
+     * Selects randomly quote form DB and renders twig template.
      *
-     * @return string
+     * @throws \Nathiss\Bundle\QuoteGeneratorBundle\Exception\QuoteDoesNotExist
+     *
+     * @return string|null
      */
     public function generateQuote()
     {
-        $quote = $this->container->get('doctrine.orm.entity_manager')->getRepository('NathissQuoteGeneratorBundle:Quote')->findOneRandomly();
+        $quote = $this->get('doctrine.orm.entity_manager')->getRepository('NathissQuoteGeneratorBundle:Quote')->findOneRandomly();
         if(!$quote)
-            return null;
+            throw new QuoteDoesNotExistException('No quote exists in datebase!');
 
-        $template = $this->container->getParameter('nathiss_quote_generator.template');
+        return $this->get('templating')->render(
+            $this->getTemplate(),
+            array('quote' => $quote)
+        );
+    }
 
-        return $this->container->get('templating')->render($template, array('quote' => $quote));
+    /**
+     * Returns service from container.
+     *
+     * @param string $service
+     *
+     * @return mixed
+     */
+    private function get($service)
+    {
+        return $this->container->get($service);
+    }
+
+    /**
+     * Returns template's parameter.
+     *
+     * @return string
+     */
+    private function getTemplate()
+    {
+        return $this->container->getParameter('nathiss_quote_generator.template');
     }
 
     /**
