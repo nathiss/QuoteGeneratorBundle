@@ -49,13 +49,8 @@ class LoadQuoteData implements FixtureInterface
      *
      * @return array
      */
-    public function loadQuoteFixtures()
+    private function loadQuoteFixtures()
     {
-        $path = __DIR__.'/../../Resources/data/quotes.json';
-        $file = fopen($path, 'r');
-        $content = fread($file, filesize($path));
-        fclose($file);
-
-        return json_decode($content);
+        return json_decode(file_get_contents(__DIR__.'/../../Resources/data/quotes.json'));
     }
 }
